@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap</title>
+
+         <!-- Bootstrap css Starts -->
+        <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.min.css">
+        
+        <!-- Custom css starts -->
+        <link rel="stylesheet" href="{{STATIC_URL}}css/custom.css">
+
+        <!-- Parallax starts -->
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/parallax.css" />
+
+        <!-- lightbox starts here -->
+        <link rel="stylesheet" href="{{STATIC_URL}}css/lightbox_main.css" />
+        <link rel="stylesheet" href="{{STATIC_URL}}css/lightbox_custom.css" />          
+        
+    </head>
+    
+    <body>
+        
+        <div id="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12" id="brand_image">
+                        <img src="{{STATIC_URL}}img/logo1.jpg" class="img-responsive">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" id="navbar">
+                        <ul>
+                            <li>
+                              {% url 'home' as home_url %}
+                              <a href="{{home_url}}" {% if request.get_full_path == home_url %}class="active"{% endif %}>Home</a>
+                            </li>
+                            <li>
+                              {% url 'blog' as blog_url %}
+                              <a href="{{blog_url}}" {% if '/blog/' in request.path %}class="active"{% endif %}>Blog</a>
+                            </li>
+                            <li>
+                              {% url 'illustration' as illustration_url %}
+                              <a href="{{illustration_url}}" {% if '/illustration/' in request.path %}class="active"{% endif %}>Illustration</a>
+                            </li>
+                            <li>
+                              {% url 'inspiration' as inspiration_url %}
+                              <a href="{{inspiration_url}}" {% if '/inspiration/' in request.path %}class="active"{% endif %}>Inpiration</a>
+                            </li>
+                            <li>
+                              {% url 'fashion' as fashion_url %}
+                              <a href="{{fashion_url}}" {% if '/fashion/' in request.path %}class="active"{% endif %}>Fashion</a>
+                            </li>
+                            <li>
+                              {% url 'snaps' as snaps_url %}
+                              <a href="{{snaps_url}}" {% if '/snaps/' in request.path %}class="active"{% endif %}>Snaps</a>
+                            </li>
+                            <li>
+                              {% url 'about' as about_url %}
+                              <a href="{{about_url}}" {% if request.get_full_path == about_url %}class="active"{% endif %}>About</a>
+                            </li>
+                            <span class="clear_both"></span>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="main_content">
+            {% block main_content %}
+
+            {% endblock %}
+        </div>
+        
+        <br>
+        <br>
+        
+    <footer class="footer">
+      <div class="container">
+          <hr>
+          <div class="row">
+              <div id="contact">
+                  <p><a href="#contact">Contact</a></p>
+                  <a href="#" class="facebook"></a>
+                  <a href="#" class="twitter"></a>
+                  <a href="#" class="pinterest"></a>
+                  <a href="#" class="googleplus"></a>
+                  <a href="#" class="instagram"></a>
+                  <span class="clear_both"></span>
+              </div>
+          </div>
+          <div class="row">
+              <div id="copyright_info">
+              <p class="text-muted">2015 &copy; <i>Kabi Chuckles</i>. All rights reserved.</p>
+              </div>
+          </div>
+      </div>
+    </footer>
+
+    <!-- ********* ********* JAVASCRIPT ********* ********* -->
+        
+      <script src="{{STATIC_URL}}js/jquery.min.js"></script>
+      <script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+    
+    
+    <!-- START PARALLAX -->
+      <script type="text/javascript" src="{{STATIC_URL}}js/jquery.easing.1.3.js"></script>
+      <script type="text/javascript" src="{{STATIC_URL}}js/parallax.js"></script>
+
+      <script type="text/javascript">
+        $(function() {
+          var $pxs_container  = $('#pxs_container');
+          $pxs_container.parallaxSlider();
+        });
+      </script>
+    <!-- END PARALLAX -->
+    
+        
+        <!-- START OF PINTEREST -->
+        
+        <!-- Please call pinit.js only once per page -->
+        <script type="text/javascript" async defer  data-pin-color="red" data-pin-height="28" data-pin-hover="true" src="//assets.pinterest.com/js/pinit.js"></script>
+        
+        <!-- END   OF PINTEREST -->
+        
+        
+        <!-- START OF FACEBOOK -->
+
+        <!-- like -->
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.3";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+        <!--   share -->
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.3";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>        
+        
+        <!-- END OF FACEBOOK -->
+
+        <!-- START LIGHTBOX-->
+        <script src="{{STATIC_URL}}js/lightbox_custom.js"></script>
+        <script src="{{STATIC_URL}}js/imagelightbox.min.js"></script>        
+        <!-- end -->
+
+    </body>
+</html>

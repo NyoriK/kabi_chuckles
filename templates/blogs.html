@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block main_content %}
+
+  <div class="container">
+      <hr>
+      {% if blogs.count > 0 %}
+        {% for blog in blogs.object_list %}
+        <div class="blog">
+            <p class="blog_date"> {{blog.pubdate|date:'l'}}, {{blog.pubdate}} </p>
+            <h2 class="blog_title"> {{blog.title}} </h2>
+            {% if blog.default_first_image_size %}
+              <img src="{{blog.first_image}}" class="blog_img_default img-responsive img-thumbnail">
+            {% else %}
+              <img src="{{blog.first_image}}" class="blog_img_large img-responsive img-thumbnail">
+            {% endif %}
+                <a href="{{blog_url}}{{blog.pk}}" class="blog_read_more btn btn-info">Read more</a>
+            <div class="container">
+                <p class="divider">***</p>
+            </div>
+        </div>
+        {% endfor %}
+
+      {% else %}
+      <div class="blog">
+        <p class="blog_date">No blog written yet!</p>
+      </div>
+      {% endif %}
+
+      <div class="prev_next">
+
+        {% if blogs.has_previous %}
+          <a class="prev btn btn-info" href="?page={{blogs.previous_page_number}}">Prev</a>
+        {% endif %}
+        {% if blogs.has_next %}
+          <a class="next btn btn-info" href="?page={{blogs.next_page_number}}">Next</a>
+        {% endif %}
+        <div class="pages">
+          <ul>
+          <!-- Instead use the page_range by indexing. -->
+          {% for pg in page_range %}
+            {% if blogs.number == pg %}
+              <li><a href="?page={{pg}}" class="btn btn-default">{{pg}}</a></li>
+            {% else %}
+              <li><a href="?page={{pg}}" class="btn">{{pg}}</a></li>
+            {% endif %}
+          {% endfor %}
+          </ul>
+        </div>
+        <span class="clear_both"></span>
+
+      </div> 
+
+{% load disqus_tags %}
+{% disqus_show_comments %}
+
+  </div>
+{% endblock %}

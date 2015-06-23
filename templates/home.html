@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block main_content %}
+    <div class="container-fluid">
+        
+        <div id="pxs_container" class="pxs_container">
+            <div class="pxs_bg">
+                <div class="pxs_bg1"></div>
+                <div class="pxs_bg2"></div>
+                <div class="pxs_bg3"></div>
+            </div>
+            <div class="pxs_loading">Loading images...</div>
+
+            {% if not slider_pics %}
+            <div class="pxs_slider_wrapper">
+                <ul class="pxs_slider">
+                    <li><img src="static/img/image_1.jpg" alt="First Image" /></li>
+                    <li><img src="static/img/2.jpg" alt="Second Image" /></li>
+                    <li><img src="static/img/image_3.jpg" alt="Third Image" /></li>
+                    <li><img src="static/img/4.jpg" alt="Forth Image" /></li>
+                    <li><img src="static/img/5.jpg" alt="Fifth Image" /></li>
+                    <li><img src="static/img/image_5.jpg" alt="Sixth Image" /></li>
+                </ul>
+                <div class="pxs_navigation">
+                    <span class="pxs_next"></span>
+                    <span class="pxs_prev"></span>
+                </div>
+                <ul class="pxs_thumbnails">
+                    <li><img src="static/img/image_1.jpg" alt="First Image" /></li>
+                    <li><img src="static/img/thumbs/2.jpg" alt="Second Image" /></li>
+                    <li><img src="static/img/image_3.jpg" alt="Third Image" /></li>
+                    <li><img src="static/img/thumbs/4.jpg" alt="Forth Image" /></li>
+                    <li><img src="static/img/thumbs/5.jpg" alt="Fifth Image" /></li>
+                    <li><img src="static/img/image_5.jpg" alt="Sixth Image" /></li>
+                </ul>
+            </div>
+            {% else %}
+            <div class="pxs_slider_wrapper">
+                <ul class="pxs_slider">
+                    <li><img src="{{MEDIA_URL}}{{slider_pics.image1}}" alt="First Image" /></li>
+                    <li><img src="{{MEDIA_URL}}{{slider_pics.image2}}" alt="First Image" /></li>
+                    <li><img src="{{MEDIA_URL}}{{slider_pics.image3}}" alt="First Image" /></li>
+                    <li><img src="{{MEDIA_URL}}{{slider_pics.image4}}" alt="First Image" /></li>
+                    <li><img src="{{MEDIA_URL}}{{slider_pics.image5}}" alt="First Image" /></li>
+                    <li><img src="{{MEDIA_URL}}{{slider_pics.image6}}" alt="First Image" /></li>
+                </ul>
+                <div class="pxs_navigation">
+                    <span class="pxs_next"></span>
+                    <span class="pxs_prev"></span>
+                </div>
+                <ul class="pxs_thumbnails">
+                    <li><img src="{{MEDIA_URL}}{{slider_pics.image1}}" alt="First Image" /></li>
+                    <li><img src="{{MEDIA_URL}}{{slider_pics.image2}}" alt="First Image" /></li>
+                    <li><img src="{{MEDIA_URL}}{{slider_pics.image3}}" alt="First Image" /></li>
+                    <li><img src="{{MEDIA_URL}}{{slider_pics.image4}}" alt="First Image" /></li>
+                    <li><img src="{{MEDIA_URL}}{{slider_pics.image5}}" alt="First Image" /></li>
+                    <li><img src="{{MEDIA_URL}}{{slider_pics.image6}}" alt="First Image" /></li>
+                </ul>
+            </div>            
+            {% endif %}
+        </div>
+        
+    </div>
+{% endblock %}

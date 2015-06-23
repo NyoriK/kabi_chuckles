@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block main_content %}
+  <div class="container">
+      <hr>
+      
+      <div class="blog">
+          <p class="blog_date"> {{illustration.pubdate|date:'l'}}, {{illustration.pubdate}} </p>
+          <h2 class="blog_title"> {{illustration.title}} </h2>
+          <div class="blog_description">
+            {{illustration.description | safe}}
+          </div>
+          <div class="facebook_btn">
+              <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+              <div class="fb-share-button" data-href="http://www.kisforkani.com/about/" data-layout="button_count"></div>                    
+          </div>
+              <p class="divider">***</p>
+
+          <div class="prev_next">
+            <a class="prev btn btn-info" href="#">Prev</a>
+            <a class="next btn btn-info" href="#">Next</a>
+            <span class="clear_both"></span>
+          </div>                        
+          
+          <div id="comments">
+              <h3>Comments</h3>
+          </div>
+      </div>
+      
+  </div>
+{% endblock %}

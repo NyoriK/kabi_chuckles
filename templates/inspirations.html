@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block main_content %}
+  <div class="container">
+      <hr>
+      {% if inspirations.count > 0 %}
+        {% for inspiration in inspirations.object_list %}
+        <div class="blog">
+            <p class="blog_date"> {{inspiration.pubdate|date:'l'}}, {{inspiration.pubdate}} </p>
+            <h2 class="blog_title"> {{inspiration.title}} </h2>
+            {% if blog.default_first_image_size %}
+              <img src="{{inspiration.first_image}}" class="blog_img_default img-responsive img-thumbnail">
+            {% else %}
+              <img src="{{inspiration.first_image}}" class="blog_img_large img-responsive img-thumbnail">
+            {% endif %}
+                <a href="{{inspiration_url}}{{inspiration.pk}}" class="blog_read_more btn btn-info">Read more</a>
+            <div class="container">
+                <p class="divider">***</p>
+            </div>
+        </div>
+        {% endfor %}
+      {% else %}
+      <div class="blog">
+        <p class="blog_date">Coming soon!</p>
+      </div>
+      {% endif %}
+
+      <div class="prev_next">
+
+        {% if inspirations.has_previous %}
+          <a class="prev btn btn-info" href="?page={{inspirations.previous_page_number}}">Prev</a>
+        {% endif %}
+        {% if inspirations.has_next %}
+          <a class="next btn btn-info" href="?page={{inspirations.next_page_number}}">Next</a>
+        {% endif %}
+        <div class="pages">
+          <ul>
+          <!-- Instead use the page_range by indexing. -->
+          {% for pg in page_range %}
+            {% if inspirations.number == pg %}
+              <li><a href="?page={{pg}}" class="btn btn-default">{{pg}}</a></li>
+            {% else %}
+              <li><a href="?page={{pg}}" class="btn">{{pg}}</a></li>
+            {% endif %}
+          {% endfor %}
+          </ul>
+        </div>
+        <span class="clear_both"></span>
+
+      </div>
+
+{% load disqus_tags %}
+{% disqus_show_comments %}
+      
+  </div>
+{% endblock %}

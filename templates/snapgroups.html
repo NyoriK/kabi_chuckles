@@ -1,0 +1,9 @@
+{% for sg in snapgroup.object_list %}
+    <h4 id="combination" class="snap_date">{{sg.date|date:'l'}}, {{sg.date}}</h4>
+    <ul>
+    {% for snap in sg.snap_set.all %}
+        <li><a href="{{MEDIA_URL}}{{snap.image}}" data-imagelightbox="f"><img src="{{MEDIA_URL}}{{snap.image}}" alt="{{snap.caption}}" /></a></li>
+    {% endfor %}
+        <span class="clear_both"></span>
+    </ul>
+{% endfor %}

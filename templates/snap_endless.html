@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<div id="main_content">
+    <div id="snap_wrapper" class="container">
+        <hr>
+        {% if snapgroup.count > 0 %}
+            
+            <div class="endless_page_template">
+                {% include page_template %}
+            </div>
+
+            {% block js %}
+                <script src="http://code.jquery.com/jquery-latest.js"></script> 
+                <script src="{{ STATIC_URL }}endless_pagination/js/endless_on_scroll.js"></script>
+                <script src="{{ STATIC_URL }}endless_pagination/js/endless-pagination.js"></script>
+                <script>
+                    $.endlessPaginate({paginateOnScroll: true,
+                    endless_on_scroll_margin : 10
+                    });
+                </script>
+            {% endblock %}           
+
+        {% else %}
+            <li><p>No SNAPGROUP yet!</p></li>
+            <span class="clear_both"></span>
+        {% endif %}
+    
+    {% load disqus_tags %}
+    {% disqus_show_comments %}
+    
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+    {% extends "base.html" %}
+
+    {% block main_content %}
+    <div id="main_content">
+        <div id="snap_wrapper" class="container">
+            <hr>
+            {% if snapgroup.object_list.count > 0 %}            
+                {% include 'snapgroups.html' %}
+            {% else %}
+                <li><p>No SNAPGROUP yet!</p></li>
+                <span class="clear_both"></span>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <div class="container">
+        <div class="prev_next">
+            {% if snapgroup.has_previous %}
+              <a class="prev btn btn-info" href="?page={{snapgroup.previous_page_number}}">Prev</a>
+            {% endif %}
+            {% if snapgroup.has_next %}
+              <a class="next btn btn-info" href="?page={{snapgroup.next_page_number}}">Next</a>
+            {% endif %}
+            <div class="pages">
+              <ul>
+              <!-- Instead use the page_range by indexing. -->
+              {% for pg in page_range %}
+                {% if snapgroup.number == pg %}
+                  <li><a href="?page={{pg}}" class="btn btn-default">{{pg}}</a></li>
+                {% else %}
+                  <li><a href="?page={{pg}}" class="btn">{{pg}}</a></li>
+                {% endif %}
+              {% endfor %}
+              </ul>
+            </div>
+            <span class="clear_both"></span>
+        </div>        
+
+        {% load disqus_tags %}
+        {% disqus_show_comments %}
+    </div>
+    {% endblock %}
